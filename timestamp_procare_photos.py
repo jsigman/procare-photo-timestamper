@@ -29,8 +29,8 @@ def _get_offset_time(timestamp: datetime.datetime) -> str:
         timestamp.timestamp(), local_timezone
     )
     offset = corrected_time - timestamp.replace(tzinfo=pytz.UTC)
-    offset_hours = offset.seconds // 3600
-    return f"-{offset_hours:02d}:00"
+    offset_hours = -1 * (offset.seconds // 3600)
+    return f"{offset_hours:02d}:00"
 
 
 def _timestamp_to_exif_string(timestamp: datetime.datetime) -> str:

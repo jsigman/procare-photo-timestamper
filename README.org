@@ -1,0 +1,29 @@
+#+title: Procare Photo Timestamper
+#+author: John Sigman
+* About
+This project is a simple python script for adding timestamps to photos downloaded with [[https://github.com/JWally][JWally]]'s [[https://github.com/JWally/procare-media-downloader][procare-media-downloader]].
+
+The code simply reads the filename of the downloaded photo and adds a timestamp back into the image exif metadata.
+
+** Proof of concept
+
+#+begin_src python
+import datetime
+return datetime.datetime.fromtimestamp(1665512507.858249)
+#+end_src
+
+#+RESULTS:
+: 2022-10-11 14:21:47.858249
+
+** Dependencies
+
+** Run
+#+begin_src bash
+python3 timestamp_procare_photos.py ~/Downloads/  
+#+end_src
+
+
+
+* License
+MIT License
+

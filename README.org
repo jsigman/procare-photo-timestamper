@@ -8,7 +8,7 @@ The code simply reads the filename of the downloaded photo and adds a timestamp 
 
 ** Update
 
-As of 6/23/2023, due to upstream changes in Procare Software's API and web portal, [[https://github.com/JWally/procare-media-downloader][procare-media-downloader]] is stale and so this repository no longer supports this flow. I will post a solution with the new Procare Software eventually.
+As of 6/23/2023, due to upstream changes in Procare Software's API and web portal, [[https://github.com/JWally/procare-media-downloader][procare-media-downloader]] is stale and so this repository no longer supports this flow. I will post a solution with the new Procare Software format eventually.
 
 ** Proof of concept
 

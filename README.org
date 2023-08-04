@@ -10,24 +10,39 @@ The code simply reads the filename of the downloaded photo and adds a timestamp 
 
 As of 6/23/2023, due to upstream changes in Procare Software's API and web portal, [[https://github.com/JWally/procare-media-downloader][procare-media-downloader]] is stale and so this repository no longer supports this flow. I will post a solution with the new Procare Software format eventually.
 
+*** Update 8/3/2023
+
+I have added [[https://github.com/jsigman/procare-photo-scraper][jsigman/procare-photo-scraper]] to be able to bulk download one month's photos at a time. This seems to work for now.
+
 ** Proof of concept
+
+The procare files have timestamps in their filenames. We can inject the timestamp data back into the image, therefore, by using the names of each image file.
 
 #+begin_src python
 import datetime
 return datetime.datetime.fromtimestamp(1665512507.858249)
 #+end_src
 
-#+RESULTS:
+#+begin_src console
 : 2022-10-11 14:21:47.858249
+#+end_src
 
 ** Dependencies
 
-** Run
+*** Mac
 #+begin_src bash
-python3 timestamp_procare_photos.py ~/Downloads/  
+brew install exiftool
 #+end_src
 
+*** Ubuntu
+#+begin_src bash
+sudo apt install libimage-exiftool-perl
+#+end_src
 
+** Run
+#+begin_src bash
+python3 timestamp_procare_photos.py PATH_TO_YOUR_IMAGES_DIR
+#+end_src
 
 * License
 MIT License

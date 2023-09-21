@@ -19,9 +19,8 @@ offset_tag_ids = [x for x, v in TAGS.items() if v in OFFSET_TAGS]
 local_timezone = tzlocal()
 
 
-def _get_photo_paths(photos_dir: Path) -> List[Path]:
-    # example: img_1650306747855986_photo.jpg
-    return list(photos_dir.glob("img_*_photo.jpg"))
+def _get_image_paths(directory: Path, pattern: str) -> List[Path]:
+    return list(directory.glob(pattern))
 
 
 def _get_offset_time(timestamp: datetime.datetime) -> str:
@@ -56,7 +55,7 @@ def _get_timestamp_from_filename(filepath: Path) -> datetime.datetime:
     return timestamp
 
 
-def _add_timestamp_metadata_to_photo(filepath: Path) -> None:
+def _add_timestamp_metadata_to_image(filepath: Path) -> None:
     timestamp = _get_timestamp_from_filename(filepath)
 
     # write unix time to metadata
@@ -87,15 +86,18 @@ def main(photos_dir: str):
     photos_dir = Path(photos_dir).resolve()
     assert photos_dir.exists()
 
-    photo_paths = _get_photo_paths(photos_dir)
-    for photo_path in photo_paths:
+    photo_paths = _get_image_paths(photos_dir, "img_*_photo.jpg")
+    activity_paths = _get_image_paths(photos_dir, "img_*_activity.jpg")
+    all_image_paths = photo_paths + activity_paths
+    
+    for image_path in all_image_paths:
         try:
-            _add_timestamp_metadata_to_photo(photo_path)
-            print(f"Done processing: {photo_path}")
+            _add_timestamp_metadata_to_image(image_path)
+            print(f"Done processing: {image_path}")
         except Exception as exc:
             if isinstance(exc, BdbQuit):
                 raise exc
-            print(f"Error processing:{photo_path}:")
+            print(f"Error processing: {image_path}:")
             print(exc)
 
 

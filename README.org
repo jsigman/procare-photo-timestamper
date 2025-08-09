@@ -39,14 +39,22 @@ brew install exiftool
 sudo apt install libimage-exiftool-perl
 #+end_src
 
-** Python dependencies
+** Python setup with uv
+First, install uv if you haven't already:
 #+begin_src bash
-pip install -r requirements.txt
+curl -LsSf https://astral.sh/uv/install.sh | sh
+#+end_src
+
+Then create and activate a virtual environment and install dependencies:
+#+begin_src bash
+uv venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+uv sync
 #+end_src
 
 ** Run
 #+begin_src bash
-python3 timestamp_procare_photos.py PATH_TO_YOUR_IMAGES_DIR
+python timestamp_procare_photos.py PATH_TO_YOUR_IMAGES_DIR
 #+end_src
 
 * License

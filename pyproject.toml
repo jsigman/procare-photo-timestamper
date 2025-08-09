@@ -1,0 +1,13 @@
+[project]
+name = "procare-photo-timestamper"
+version = "0.1.0"
+description = "A simple Python script for adding timestamps to photos downloaded with procare-media-downloader"
+requires-python = ">=3.8"
+dependencies = [
+    "pytz",
+    "python-dateutil",
+    "pillow",
+]
+
+[tool.uv]
+dev-dependencies = []
